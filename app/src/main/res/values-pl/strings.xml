@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Haier AC Bridge</string>
+    <string name="title_info">Status</string>
+    <string name="title_settings">Ustawienia</string>
+    <string name="title_state">Status:</string>
+    <string name="title_bridgetoken">Twój token mostka:</string>
+    <string name="title_ip">Twój adres IP mostka:</string>
+    <string name="button_login_text">Zaloguj</string>
+    <string name="button_logout_text">Wyloguj</string>
+    <string name="button_resettoken_text">Wygeneruj nowy token</string>
+    <string name="hint_login">E-mail</string>
+    <string name="hint_password">Hasło</string>
+    <string name="login_info">Zaloguj się przy użyciu konta Haier</string>
+    <string name="logged_in_info">Sparowany z: %1$s</string>
+    <string name="token_regen_ok">Pomyślnie wygenerowano nowy token</string>
+    <string name="status_running">Działa jak szalony!</string>
+    <string name="status_disabled">SDK się nie uruchomiło!</string>
+    <string name="status_logged_in">Uruchamianie...</string>
+    <string name="status_not_logged_in">Musisz się najpierw zalogować na konto Haier</string>
+    <string name="status_unknown">n/d</string>
+    <string name="toast_wrong_auth">Nieprawidłowa nazwa użytkownika lub hasło</string>
+    <string name="toast_getting_devices_failed">Nie udało się pobrać Twoich urządzeń</string>
+    <string name="toast_connected">Pomyślnie połączono</string>
+    <string name="toast_sdk_start_failed">Błąd API: %1$s</string>
+    <string name="toast_logged_out">Pomyślnie wylogowano</string>
+    <string name="checkbox_autostart">Uruchom podczas uruchamiania urządzenia</string>
+</resources>

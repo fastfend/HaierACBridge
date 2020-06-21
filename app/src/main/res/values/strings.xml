@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Haier AC Bridge</string>
+    <string name="title_info">Status</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_state">Status:</string>
+    <string name="title_bridgetoken">Your bridge token:</string>
+    <string name="title_ip">Your bridge IP address:</string>
+    <string name="button_login_text">Login</string>
+    <string name="button_logout_text">Logout</string>
+    <string name="button_resettoken_text">Reset token</string>
+    <string name="hint_login">E-mail</string>
+    <string name="hint_password">Password</string>
+    <string name="login_info">Login with your Haier Account</string>
+    <string name="logged_in_info">Paired with: %1$s</string>
+    <string name="token_regen_ok">Successfully created new token</string>
+    <string name="status_running">Up and running!</string>
+    <string name="status_disabled">SDK not started!</string>
+    <string name="status_logged_in">Starting...</string>
+    <string name="status_not_logged_in">You need to login to Haier Account first</string>
+    <string name="status_unknown">n/a</string>
+    <string name="toast_wrong_auth">Incorrect user or password</string>
+    <string name="toast_getting_devices_failed">Couldn\'t get your devices</string>
+    <string name="toast_connected">Succesfully connected</string>
+    <string name="toast_sdk_start_failed">API error: %1$s</string>
+    <string name="toast_logged_out">Successfully logged out</string>
+    <string name="checkbox_autostart">Enable start on boot</string>
+</resources>

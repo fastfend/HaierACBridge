@@ -1,0 +1,57 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+    defaultConfig {
+        applicationId "com.fastfend.haieracbridge"
+        minSdkVersion 21
+        targetSdkVersion 29
+        maxSdkVersion 29
+        versionCode 7
+        versionName "1.2.1"
+        setProperty("archivesBaseName", "HaierACBridge-$versionName")
+        ndk {
+            abiFilters 'armeabi-v7a', 'armeabi', 'arm64-v8a'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.navigation:navigation-fragment:2.0.0'
+    implementation 'androidx.navigation:navigation-ui:2.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation files('libs\\uSDK4.5.01_Phone_Android.aar')
+    //implementation fileTree(dir: 'libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.bugfender.sdk:android:3.+'
+    implementation 'org.restlet.android:org.restlet:2.4.3'
+    implementation 'org.restlet.android:org.restlet.ext.json:2.4.3'
+    implementation 'org.restlet.android:org.restlet.ext.gson:2.4.3'
+    implementation 'org.restlet.android:org.restlet.ext.nio:2.4.3'
+}
