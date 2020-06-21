@@ -1,11 +1,15 @@
-language: java
-install: skip
-
+language: android
 os: linux
-dist: trusty
 jdk: oraclejdk8
+dist: trusty
+
+android:
+  components:
+    - build-tools-29.0.2
+    - android-29
 
 script:
+  - chmod +x ./gradlew
   - ./gradlew build --scan -s
 
 before_cache:
