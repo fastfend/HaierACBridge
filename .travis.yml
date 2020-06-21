@@ -2,21 +2,29 @@ language: android
 os: linux
 jdk: oraclejdk8
 dist: trusty
-
 android:
   components:
     - build-tools-29.0.2
     - android-29
-
 script:
   - chmod +x ./gradlew
-  - ./gradlew build
-
+  - "./gradlew build"
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
-
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    - "$HOME/.gradle/caches/"
+    - "$HOME/.gradle/wrapper/"
+before_deploy:
+  - export RELEASE_APK_FILE=$(ls app/build/outputs/apk/release/*.apk)
+  - echo "deploying $RELEASE_APK_FILE to GitHub releases"
+deploy:
+  provider: releases
+  api_key:
+    secure: RvP8Fbn4zNeiD5pR+gkQ2KC548Tt0pp1uTF/+pQH0IJIy2Gu/xFJwqWwO/RqnnnrTG7IVszi9dtR+JB9tgerMzH5xmZcnj8XB27y6vEIa85cVayACdmLJG/EX4/oAPvoViIFt4yXMhJMI7pM+NDocRYsANXfcXMkwfj8mW3sZeeVChzIPOi0jEFkfAo4ta1lL7e3YzCbhyXmtxJYV4AjsYYqgjCJzWcJRPoyky5l6sl5Tvl6BJyw0ee9l19Zf6TLWLnTGNWJG0AQCnW7Zxsp6CKEtg5HU8wo/WZNk2aSJNWfUcG8cFSx6DcMSg213E8aiaHz8svse/qqMIidP4nFplJmPNDbPLqeXj2TFOgYaQMqTu4h14k1tPEXKUsqNwdnrBwwKziB5vKRirBoLluHfMzCbwWMsvo5ZzgmNOIvibFr0rZznKEbn6C2b1F++aaPm1qHSu1vuEUQQJ4V1uC7hxxkal5p+ZQWWNN5jIC8GaxKIHd/8ZAiKyHcKrYiT3bLHhP3d3TkDcWhcsjsxoJXN8OjEuRmQAnWadJx3L1qRgLbgDwup5DEkck5gohL4+nANTLXHROv2u0Foj7yB7UZZxFkBTkEgl5w5//zVVB2r7sftrfrkbucgK7egpNUeh32mdF7YQVfSuGlRyCdzu3TgmSyOFx8pBJbIovY2Fw/m3o=
+  file: "${RELEASE_APK_FILE}"
+  on:
+    repo: fastfend/HaierACBridge
+    tags: true
+  skip_cleanup: true
