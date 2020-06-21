@@ -17,24 +17,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
             debuggable false
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-    packagingOptions {
-        exclude 'META-INF/DEPENDENCIES'
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/license.txt'
-        exclude 'META-INF/NOTICE'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/notice.txt'
-        exclude 'META-INF/ASL2.0'
-        exclude("META-INF/*.kotlin_module")
     }
 }
 
@@ -51,7 +39,9 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.bugfender.sdk:android:3.+'
     implementation 'org.restlet.android:org.restlet:2.4.3'
-    implementation 'org.restlet.android:org.restlet.ext.json:2.4.3'
+    implementation ('org.restlet.android:org.restlet.ext.json:2.4.3',{
+        exclude group:'org.json', module:'json'
+    })
     implementation 'org.restlet.android:org.restlet.ext.gson:2.4.3'
     implementation 'org.restlet.android:org.restlet.ext.nio:2.4.3'
 }
