@@ -3,12 +3,10 @@ package com.fastfend.haieracbridge.webserver;
 import com.fastfend.haieracbridge.haierapi.ACDevice;
 import com.fastfend.haieracbridge.haierapi.ACFanSpeed;
 import com.fastfend.haieracbridge.haierapi.ACMode;
-import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.restlet.Component;
 import org.restlet.Request;
@@ -24,10 +22,8 @@ import org.restlet.engine.Engine;
 import org.restlet.engine.adapter.HttpServerHelper;
 import org.restlet.ext.gson.GsonConverter;
 import org.restlet.ext.gson.GsonRepresentation;
-import org.restlet.ext.json.JsonConverter;
 import org.restlet.ext.json.JsonRepresentation;
 
-import java.io.IOException;
 import java.util.List;
 
 public class ServerFactory {
@@ -62,14 +58,14 @@ public class ServerFactory {
 
                                         object.addProperty("id", device.getDeviceID());
                                         object.addProperty("powerstate", device.getPowerState());
-                                        object.addProperty("temp", device.getAroundTemp());
+                                        object.addProperty("temp", device.getIndoorTemp());
                                         object.addProperty("tempset", device.getSetTemp());
                                         object.addProperty("humidity", device.getHumidity());
                                         object.addProperty("mode", device.getMode().name());
                                         object.addProperty("fanspeed", device.getFanSpeed().name());
-                                        object.addProperty("safefan", device.getSafeFan());
-                                        object.addProperty("swing_rl", device.getSwingLeftRight());
-                                        object.addProperty("swing_ud", device.getSwingUpDown());
+                                        object.addProperty("safefan", device.getEcoSensor());
+                                        object.addProperty("swing_rl", device.getVerticalSway());
+                                        object.addProperty("swing_ud", device.getHorizontalSway());
                                         object.addProperty("healthmode", device.getHealthMode());
 
                                         GsonRepresentation rep = new GsonRepresentation<>(object);
@@ -127,17 +123,17 @@ public class ServerFactory {
                                             if(object.has("swing_rl"))
                                             {
                                                 boolean val = object.get("swing_rl").getAsBoolean();
-                                                if(device.getSwingLeftRight() != val)
+                                                if(device.getVerticalSway() != val)
                                                 {
-                                                    device.SetSwingLeftRight(val);
+                                                    device.SetVerticalSway(val);
                                                 }
                                             }
                                             if(object.has("swing_ud"))
                                             {
                                                 boolean val = object.get("swing_ud").getAsBoolean();
-                                                if(device.getSwingUpDown() != val)
+                                                if(device.getHorizontalSway() != val)
                                                 {
-                                                    device.SetSwingUpDown(val);
+                                                    device.SetHorizontalSway(val);
                                                 }
                                             }
                                             if(object.has("healthmode"))

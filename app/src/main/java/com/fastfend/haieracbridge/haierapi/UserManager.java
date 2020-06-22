@@ -248,7 +248,7 @@ public class UserManager {
                         for (CityListResult cityListResult : response.cityListResult) {
                             for (RoomDeviceResultList roomDeviceResultList : cityListResult.roomDeviceResultList) {
                                 for (DeviceList deviceList : roomDeviceResultList.deviceList) {
-                                    ACDevice dev = new ACDevice(deviceList.id, deviceList.name, deviceList.type.typeIdentifier, deviceList.status.online);
+                                    ACDevice dev = new ACDeviceV2(deviceList.id, deviceList.name, deviceList.type.typeIdentifier, deviceList.status.online);
                                     data.add(dev);
                                 }
                             }
