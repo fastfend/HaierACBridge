@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
@@ -53,17 +54,20 @@ public class BackgroundService extends Service
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
+        Log.println(Log.INFO, "HACB", "Initializing service...");
         userManager.init(this.getApplicationContext());
         deviceManager.init(this.getApplicationContext());
 
         String authToken = userManager.getAuthToken();
         if(!authToken.equals(""))
         {
+            Log.println(Log.INFO, "HACB", "Getting devices...");
             userManager.GetUserDevices(authToken, (status, list) -> {
                 if(status == WebApiResultStatus.OK)
                 {
+                    Log.println(Log.INFO, "HACB", "Starting SDK...");
                     deviceManager.start(authToken, list, value -> {
-                        Toast.makeText(this, "Started", Toast.LENGTH_LONG).show();
+                        Log.println(Log.INFO, "HACB", "SDK started...");
 
                         Timer deviceChecker = new Timer();
 
@@ -71,6 +75,7 @@ public class BackgroundService extends Service
                         deviceChecker.scheduleAtFixedRate(checkDevices, 0, 5000);
 
                     });
+                    Log.println(Log.INFO, "HACB", "Creating notification service...");
                     createNotificationChannel();
                     Intent notificationIntent = new Intent(this, MainActivity.class);
                     PendingIntent pendingIntent = PendingIntent.getActivity(this,
@@ -80,6 +85,8 @@ public class BackgroundService extends Service
                             .setContentText("Running")
                             .setContentIntent(pendingIntent)
                             .build();
+
+                    Log.println(Log.INFO, "HACB", "Starting notification service...");
                     startForeground(1, notification);
                     //TODO: Add icons etc
                 }

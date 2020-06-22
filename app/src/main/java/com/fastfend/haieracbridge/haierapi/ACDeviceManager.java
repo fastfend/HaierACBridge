@@ -3,6 +3,7 @@ package com.fastfend.haieracbridge.haierapi;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import com.fastfend.haieracbridge.util.RandomStringGenerator;
 import com.fastfend.haieracbridge.webserver.ServerFactory;
@@ -116,6 +117,7 @@ public class ACDeviceManager
         {
             listener.onChangedState(State);
         }
+        Log.println(Log.INFO, "HACB_Manager", "Init complete");
     }
 
     public String getLocalIpAddress() {
@@ -182,9 +184,10 @@ public class ACDeviceManager
     }
 
     public void start(String apitoken, String authtoken, List<ACDevice> list, ACDeviceManagerCallback callback) {
-
+        Log.println(Log.INFO, "HACB_Manager", "SDK starting");
         mSDKManager.startSDK(uSDKStartResult -> {
             if (uSDKStartResult == uSDKErrorConst.RET_USDK_OK) {
+                Log.println(Log.INFO, "HACB_Manager", "SDK started");
                 mSDKManager.enableFeatures(uSDKManager.SDK_FEATURE_NONE);
 
                 List<uSDKDeviceInfo> remotedCtrledDeviceCollection = new ArrayList<uSDKDeviceInfo>();
@@ -202,6 +205,8 @@ public class ACDeviceManager
                 types.add(uSDKDeviceTypeConst.PACKAGE_AIRCONDITION);
                 mDeviceManager.setInterestedDeviceTypes(types);
 
+
+                Log.println(Log.INFO, "HACB_Manager", "Connecting to gateway");
                 mDeviceManager.connectToGateway(authtoken, "gw-gea-euro.haieriot.net", 56815, remotedCtrledDeviceCollection, new IuSDKCallback() {
                     @Override
                     public void onCallback(uSDKErrorConst result) {

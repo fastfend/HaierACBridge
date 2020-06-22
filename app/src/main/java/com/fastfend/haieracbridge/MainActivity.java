@@ -39,11 +39,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(!isServiceRunning())
         {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                startForegroundService(new Intent(this, BackgroundService.class));
-            } else {
-                startService(new Intent(this, BackgroundService.class));
-            }
+            startService(new Intent(this, BackgroundService.class));
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//                Log.println(Log.INFO, "HACB", "Starting Foreground Service...");
+//                startForegroundService(new Intent(this, BackgroundService.class));
+//            } else {
+//                Log.println(Log.INFO, "HACB", "Starting Legacy Service...");
+//                startService(new Intent(this, BackgroundService.class));
+//            }
         }
         bindService();
     }
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             mService = binder.getService();
             mBound = true;
 
+            Log.println(Log.INFO, "HACB", "Getting instances...");
             UserManager.getInstance(mService.userManager);
             ACDeviceManager.getInstance(mService.deviceManager);
         }
