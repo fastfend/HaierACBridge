@@ -57,6 +57,7 @@ public class ServerFactory {
                                         JsonObject object = new JsonObject();
 
                                         object.addProperty("id", device.getDeviceID());
+                                        object.addProperty("online", device.isConnected());
                                         object.addProperty("powerstate", device.getPowerState());
                                         object.addProperty("temp", device.getIndoorTemp());
                                         object.addProperty("tempset", device.getSetTemp());
