@@ -2,9 +2,9 @@
 
 # HaierACBridge
 
-<a href="https://www.npmjs.com/package/homebridge-haieracbridge-platform"><img title="release version" src="https://badgen.net/github/release/fastfend/HaierACBridge" ></a>
-<a href="https://www.npmjs.com/package/homebridge-haieracbridge-platform"><img title="travis ci" src="https://badgen.net/travis/fastfend/HaierACBridge" ></a>
-<a href="https://github.com/fastfend/homebridge-haieracbridge-platform/blob/master/LICENSE"><img title="license" src="https://badgen.net/badge/license/MIT/blue" ></a>
+<a href="https://github.com/fastfend/HaierACBridge/releases/"><img title="release version" src="https://badgen.net/github/release/fastfend/HaierACBridge" ></a>
+<a href="https://travis-ci.com/github/fastfend/HaierACBridge"><img title="travis ci" src="https://badgen.net/travis/fastfend/HaierACBridge" ></a>
+<a href="https://github.com/fastfend/HaierACBridge/blob/master/LICENSE"><img title="license" src="https://badgen.net/badge/license/MIT/blue" ></a>
 
 </span>
 
