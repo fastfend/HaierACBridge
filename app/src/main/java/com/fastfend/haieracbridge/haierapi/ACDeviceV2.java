@@ -508,4 +508,9 @@ public class ACDeviceV2 extends ACDevice {
             }
         }
     }
+
+    @Override
+    public void sendSetData() {
+
+    }
 }

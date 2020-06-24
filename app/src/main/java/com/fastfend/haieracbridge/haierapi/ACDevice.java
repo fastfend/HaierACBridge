@@ -120,7 +120,7 @@ public abstract class ACDevice {
 
             @Override
             public void onDeviceOnlineStatusChange(uSDKDevice dev, uSDKDeviceStatusConst status, int i) {
-                if(status == uSDKDeviceStatusConst.STATUS_CONNECTED)
+                if(status == uSDKDeviceStatusConst.STATUS_CONNECTED || status == uSDKDeviceStatusConst.STATUS_READY)
                 {
                     Connected = true;
                     Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "Device is online");
@@ -150,6 +150,19 @@ public abstract class ACDevice {
         });
     }
 
+    protected String getValueFromAttribute(String name)
+    {
+        String value;
+        try
+        {
+            value = _device.getAttributeMap().get(name).getAttrValue();
+        }
+        catch (Exception e)
+        {
+            value = "false";
+        }
+       return value;
+    }
 
     public abstract void onDataUpdate(String attributeName, String attributeValue);
     public abstract void SetPower(boolean isOn);
@@ -159,5 +172,5 @@ public abstract class ACDevice {
     public abstract void SetHorizontalSway(boolean isOn);
     public abstract void SetFanSpeed(ACFanSpeed speed);
     public abstract void SetMode(ACMode mode);
-
+    public abstract void sendSetData();
 }

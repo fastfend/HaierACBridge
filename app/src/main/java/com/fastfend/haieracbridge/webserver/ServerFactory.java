@@ -145,6 +145,7 @@ public class ServerFactory {
                                                     device.SetHealthMode(val);
                                                 }
                                             }
+                                            device.sendSetData();
                                             break;
                                         }
                                     }

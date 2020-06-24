@@ -248,7 +248,15 @@ public class UserManager {
                         for (CityListResult cityListResult : response.cityListResult) {
                             for (RoomDeviceResultList roomDeviceResultList : cityListResult.roomDeviceResultList) {
                                 for (DeviceList deviceList : roomDeviceResultList.deviceList) {
-                                    ACDevice dev = new ACDeviceV2(deviceList.id, deviceList.name, deviceList.type.typeIdentifier, deviceList.status.online);
+                                    //TODO: Change recognition pattern because typeId doesn't provide that information
+                                    ACDevice dev;
+                                    if(deviceList.type.typeIdentifier.length() > 32)
+                                    {
+                                        dev = new ACDeviceV3(deviceList.id, deviceList.name, deviceList.type.typeIdentifier, deviceList.status.online);
+                                    }
+                                    else {
+                                        dev = new ACDeviceV2(deviceList.id, deviceList.name, deviceList.type.typeIdentifier, deviceList.status.online);
+                                    }
                                     data.add(dev);
                                 }
                             }
