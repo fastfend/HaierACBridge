@@ -25,6 +25,10 @@ Under the Haier's SmartAir2 license I haven't decompiled any part of SmartAir2 a
 
 - [homebridge-haieracbridge-platform](https://www.npmjs.com/package/homebridge-haieracbridge-platform)
 
+## Download
+
+[HERE](https://github.com/fastfend/HaierACBridge/releases)
+
 ## Installation
 
 1. Install HaierACBridge app
