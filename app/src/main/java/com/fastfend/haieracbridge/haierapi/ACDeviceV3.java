@@ -82,19 +82,19 @@ public class ACDeviceV3 extends ACDevice {
                 switch (attributeValue)
                 {
                     case "1":
-                        Mode = ACMode.SMART;
+                        FanSpeed = ACFanSpeed.HIGH;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: HIGH");
                         break;
                     case "2":
-                        Mode = ACMode.COOL;
+                        FanSpeed = ACFanSpeed.HIGH;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: MID");
                         break;
                     case "3":
-                        Mode = ACMode.DRY;
+                        FanSpeed = ACFanSpeed.HIGH;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: LOW");
                         break;
                     case "5":
-                        Mode = ACMode.HEAT;
+                        FanSpeed = ACFanSpeed.AUTO;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: AUTO");
                         break;
                 }
