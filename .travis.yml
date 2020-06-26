@@ -8,7 +8,7 @@ android:
     - android-29
 script:
   - chmod +x ./gradlew
-  - "./gradlew build"
+  - "./gradlew assembleRelease"
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -28,3 +28,6 @@ deploy:
     repo: fastfend/HaierACBridge
     tags: true
   skip_cleanup: true
+before_install:
+  - openssl aes-256-cbc -K $encrypted_14879f02d606_key -iv $encrypted_14879f02d606_iv
+    -in storefile.jks.enc -out storefile.jks -d

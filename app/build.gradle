@@ -8,22 +8,39 @@ android {
         minSdkVersion 21
         targetSdkVersion 29
         maxSdkVersion 29
-        versionCode 16
-        versionName "1.3.0"
+        versionCode 17
+        versionName "1.3.1"
         setProperty("archivesBaseName", "HaierACBridge-$versionName")
                     ndk {
                 abiFilters 'arm64-v8a', 'armeabi-v7a', 'armeabi'
             }
     }
+
+    signingConfigs {
+        release
+    }
+
     buildTypes {
         release {
             debuggable false
+            minifyEnabled false
+            signingConfig signingConfigs.release
         }
     }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    def isRunningOnTravis = System.getenv("CI") == "true"
+
+    if (isRunningOnTravis) {
+        // configure keystore
+        signingConfigs.release.storeFile = file("../storefile.jks")
+        signingConfigs.release.storePassword = System.getenv("storepassword")
+        signingConfigs.release.keyAlias = System.getenv("keyname")
+        signingConfigs.release.keyPassword = System.getenv("keypassword")
     }
 }
 
