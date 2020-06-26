@@ -29,5 +29,5 @@ deploy:
     tags: true
   skip_cleanup: true
 before_install:
-  - openssl aes-256-cbc -K $encrypted_14879f02d606_key -iv $encrypted_14879f02d606_iv
+  - openssl aes-256-cbc -K $encrypted_839d734c84cc_key -iv $encrypted_839d734c84cc_iv
     -in storefile.jks.enc -out storefile.jks -d
