@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.fastfend.haieracbridge.R;
 import com.fastfend.haieracbridge.haierapi.ACDeviceManager;
@@ -44,7 +43,7 @@ public class InfoViewModel extends AndroidViewModel {
                 tokenText.setValue(deviceManager.getApiToken());
                 ipText.setValue(deviceManager.getLocalIpAddress());
                 break;
-            case LOGGED_IN:
+            case STARTING:
                 statusText.setValue(context.getResources().getString(R.string.status_logged_in));
                 tokenText.setValue(context.getResources().getString(R.string.status_unknown));
                 ipText.setValue(context.getResources().getString(R.string.status_unknown));

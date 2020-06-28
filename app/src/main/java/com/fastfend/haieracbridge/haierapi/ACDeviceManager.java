@@ -104,13 +104,13 @@ public class ACDeviceManager
 
         mSDKManager.init(context);
 
-        if(getApiToken().equals(""))
+        if(UserManager.getInstance().getAuthToken().equals(""))
         {
             State = ACDeviceManagerState.NOT_LOGGED_IN;
         }
         else
         {
-            State = ACDeviceManagerState.LOGGED_IN;
+            State = ACDeviceManagerState.STARTING;
         }
 
         if (listener != null)
@@ -151,7 +151,7 @@ public class ACDeviceManager
         }
         mSDKManager.stopSDK(result ->
         {
-            if(getApiToken().equals(""))
+            if(UserManager.getInstance().getAuthToken().equals(""))
             {
                 State = ACDeviceManagerState.NOT_LOGGED_IN;
             }
@@ -210,7 +210,7 @@ public class ACDeviceManager
                 mDeviceManager.connectToGateway(authtoken, "gw-gea-euro.haieriot.net", 56815, remotedCtrledDeviceCollection, new IuSDKCallback() {
                     @Override
                     public void onCallback(uSDKErrorConst result) {
-                        State = ACDeviceManagerState.LOGGED_IN;
+                        State = ACDeviceManagerState.STARTING;
 
                         for (ACDevice acdev : list) {
                             acdev.LinkSDKDevice(mDeviceManager.getDevice(acdev.getDeviceID()));
@@ -239,7 +239,7 @@ public class ACDeviceManager
         });
     }
 
-    private ACDeviceManagerState State = ACDeviceManagerState.DISABLED;
+    private ACDeviceManagerState State = ACDeviceManagerState.NOT_LOGGED_IN;
     public ACDeviceManagerState getState() {
         return State;
     }
