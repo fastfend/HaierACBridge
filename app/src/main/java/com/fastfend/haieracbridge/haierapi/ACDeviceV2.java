@@ -127,19 +127,19 @@ public class ACDeviceV2 extends ACDevice {
                 switch (attributeValue)
                 {
                     case "302001":
-                        Mode = ACMode.SMART;
+                        FanSpeed = ACFanSpeed.HIGH;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: HIGH");
                         break;
                     case "302002":
-                        Mode = ACMode.COOL;
+                        FanSpeed = ACFanSpeed.MID;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: MID");
                         break;
                     case "302003":
-                        Mode = ACMode.DRY;
+                        FanSpeed = ACFanSpeed.LOW;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: LOW");
                         break;
                     case "302005":
-                        Mode = ACMode.HEAT;
+                        FanSpeed = ACFanSpeed.AUTO;
                         Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "FanSpeed set to: AUTO");
                         break;
                 }
@@ -150,11 +150,11 @@ public class ACDeviceV2 extends ACDevice {
                 break;
             case "20200I":
                 HorizontalSway = attributeValue.equals("302008");
-                Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "VerticalSway set to: " + (EcoSensor ? "ON" : "OFF"));
+                Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "HorizontalSway set to: " + (HorizontalSway ? "ON" : "OFF"));
                 break;
             case "20200J":
                 VerticalSway = attributeValue.equals("302007");
-                Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "HorizontalSway set to: " + (EcoSensor ? "ON" : "OFF"));
+                Log.println(Log.INFO,"ACDevice[" + getDeviceID() + "]", "VerticalSway set to: " + (VerticalSway ? "ON" : "OFF"));
                 break;
             case "602001":
                 //IndoorTemp = Double.parseDouble(attributeValue);
@@ -197,6 +197,7 @@ public class ACDeviceV2 extends ACDevice {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        PoweredOn = false;
                     }
                 }
             });
@@ -214,10 +215,12 @@ public class ACDeviceV2 extends ACDevice {
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        PoweredOn = true;
                     }
                 }
             });
         }
+        PoweredOn = isOn;
     }
 
     @Override
@@ -235,6 +238,10 @@ public class ACDeviceV2 extends ACDevice {
                                 e.printStackTrace();
                             }
                         }
+                        else
+                        {
+                            HealthMode = true;
+                        }
                     }
                 });
             } else {
@@ -248,6 +255,10 @@ public class ACDeviceV2 extends ACDevice {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                        }
+                        else
+                        {
+                            HealthMode = false;
                         }
                     }
                 });
@@ -276,6 +287,10 @@ public class ACDeviceV2 extends ACDevice {
                             e.printStackTrace();
                         }
                     }
+                    else
+                    {
+                        SetTemp = temp;
+                    }
                 }
             });
         }
@@ -296,6 +311,10 @@ public class ACDeviceV2 extends ACDevice {
                                 e.printStackTrace();
                             }
                         }
+                        else
+                        {
+                            VerticalSway = true;
+                        }
                     }
                 });
             } else {
@@ -309,6 +328,10 @@ public class ACDeviceV2 extends ACDevice {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                        }
+                        else
+                        {
+                            VerticalSway = false;
                         }
                     }
                 });
@@ -331,6 +354,10 @@ public class ACDeviceV2 extends ACDevice {
                                 e.printStackTrace();
                             }
                         }
+                        else
+                        {
+                            HorizontalSway = true;
+                        }
                     }
                 });
             } else {
@@ -344,6 +371,10 @@ public class ACDeviceV2 extends ACDevice {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+                        }
+                        else
+                        {
+                            HorizontalSway = false;
                         }
                     }
                 });
@@ -367,6 +398,10 @@ public class ACDeviceV2 extends ACDevice {
                                     e.printStackTrace();
                                 }
                             }
+                            else
+                            {
+                                FanSpeed = speed;
+                            }
                         }
                     });
                     break;
@@ -381,6 +416,10 @@ public class ACDeviceV2 extends ACDevice {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            else
+                            {
+                                FanSpeed = speed;
                             }
                         }
                     });
@@ -397,6 +436,10 @@ public class ACDeviceV2 extends ACDevice {
                                     e.printStackTrace();
                                 }
                             }
+                            else
+                            {
+                                FanSpeed = speed;
+                            }
                         }
                     });
                     break;
@@ -411,6 +454,10 @@ public class ACDeviceV2 extends ACDevice {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            else
+                            {
+                                FanSpeed = speed;
                             }
                         }
                     });
@@ -438,6 +485,10 @@ public class ACDeviceV2 extends ACDevice {
                                     e.printStackTrace();
                                 }
                             }
+                            else
+                            {
+                                Mode = mode;
+                            }
                         }
                     });
                     break;
@@ -453,6 +504,10 @@ public class ACDeviceV2 extends ACDevice {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            else
+                            {
+                                Mode = mode;
                             }
                         }
                     });
@@ -470,6 +525,10 @@ public class ACDeviceV2 extends ACDevice {
                                     e.printStackTrace();
                                 }
                             }
+                            else
+                            {
+                                Mode = mode;
+                            }
                         }
                     });
                     break;
@@ -486,6 +545,10 @@ public class ACDeviceV2 extends ACDevice {
                                     e.printStackTrace();
                                 }
                             }
+                            else
+                            {
+                                Mode = mode;
+                            }
                         }
                     });
                     break;
@@ -501,6 +564,10 @@ public class ACDeviceV2 extends ACDevice {
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
+                            }
+                            else
+                            {
+                                Mode = mode;
                             }
                         }
                     });
